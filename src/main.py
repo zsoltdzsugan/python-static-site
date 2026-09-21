@@ -2,6 +2,7 @@ from textnode import *
 from generate_page import *
 import os
 import shutil
+import sys
 
 def copy_static_to_public(static="static", public="public"):
     if not os.path.exists(static):
@@ -30,11 +31,17 @@ def copy_directory(from_directory, to_copy_directory):
 
 
 def main():
-    tn = TextNode("This is some anchor text", TextType.LINK, "https://www.boot.dev")
+    basepath = "."
+    if len(sys.argv) > 1 and sys.argv[1]:
+        basepath = sys.argv[1]
 
-    print(tn)
-    copy_static_to_public()
-    generate_pages_recursive("content", "template.html", "public")
+    static = os.path.join(basepath, "static")
+    public = os.path.join(basepath, "docs")
+    content = os.path.join(basepath, "content")
+    template = os.path.join(basepath, "template.html")
+
+    copy_static_to_public(static, public)
+    generate_pages_recursive(content, template, public)
     
 
 if __name__ == "__main__":
