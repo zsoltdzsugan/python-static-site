@@ -1,1 +1,1 @@
-python3 src/main.py "https://github.com/zsoltdzsugan/python-static-site/"
+python3 src/main.py "https://zsoltdzsugan.github.io/python-static-site/"
