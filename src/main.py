@@ -31,18 +31,15 @@ def copy_directory(from_directory, to_copy_directory):
 
 
 def main():
-    basepath = "."
-    if len(sys.argv) > 1 and sys.argv[1]:
+    basepath = "/"
+
+    if len(sys.argv) > 1:
         basepath = sys.argv[1]
 
-    static = os.path.join(basepath, "static")
-    public = os.path.join(basepath, "docs")
-    content = os.path.join(basepath, "content")
-    template = os.path.join(basepath, "template.html")
+    copy_static_to_public()
 
-    copy_static_to_public(static, public)
-    generate_pages_recursive(content, template, public)
-    
+    generate_pages_recursive("content", "template.html", "docs", basepath)
+
 
 if __name__ == "__main__":
     main()
